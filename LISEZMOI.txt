@@ -1,0 +1,18 @@
+TRADUCTEUR DE LIVRE PDF (anglais -> français, mise en page conservée)
+
+1) Installer :            pip install pymupdf
+2) Lancer LM Studio, charger Qwen3 8B, démarrer le serveur local (onglet Developer).
+   Noter l'identifiant exact du modèle affiché (ex. qwen/qwen3-8b).
+   Avec Ollama : --url http://localhost:11434/v1 --modele qwen3:8b
+3) Test de mise en page SANS modèle (faux français) :
+     python traduire_livre.py tout livre.pdf --pages 7-8,60 --moteur factice --sortie test.pdf
+4) Test réel sur quelques pages :
+     python traduire_livre.py tout livre.pdf --pages 7-12 --modele qwen/qwen3-8b --sortie test_fr.pdf
+5) Livre entier (reprenable : relancer la même commande après une coupure) :
+     python traduire_livre.py tout livre.pdf --modele qwen/qwen3-8b
+   Les étapes existent aussi séparément : extraire / traduire / reconstruire.
+
+Dossier "travail" : blocs.json (texte extrait) et traductions.json (cache).
+Tu peux corriger une traduction à la main dans traductions.json puis relancer
+"reconstruire". Complète glossaire.json pour fixer les termes récurrents.
+Usage personnel uniquement.
